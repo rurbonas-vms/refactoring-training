@@ -16,6 +16,7 @@ namespace UnitTestProject
         private List<User> originalUsers;
         private List<Product> products;
         private List<Product> originalProducts;
+        private UserInterface ui;
 
         [SetUp]
         public void Test_Initialize()
@@ -27,6 +28,8 @@ namespace UnitTestProject
             // Load products from data file
             originalProducts = JsonConvert.DeserializeObject<List<Product>>(File.ReadAllText(@"Data/Products.json"));
             products = DeepCopy<List<Product>>(originalProducts);
+
+            ui = new ConsoleUserInterface();
         }
 
         [TearDown]
@@ -70,7 +73,7 @@ namespace UnitTestProject
                 {
                     Console.SetIn(reader);
 
-                    Tusc.Start(users, products);
+                    Tusc.Start(users, products, ui);
                 }
             }
         }
@@ -86,7 +89,7 @@ namespace UnitTestProject
                 {
                     Console.SetIn(reader);
 
-                    Tusc.Start(users, products);
+                    Tusc.Start(users, products, ui);
                 }
 
                 Assert.IsTrue(writer.ToString().Contains("You entered an invalid user"));
@@ -104,7 +107,7 @@ namespace UnitTestProject
                 {
                     Console.SetIn(reader);
 
-                    Tusc.Start(users, products);
+                    Tusc.Start(users, products, ui);
                 }
             }
         }
@@ -120,7 +123,7 @@ namespace UnitTestProject
                 {
                     Console.SetIn(reader);
 
-                    Tusc.Start(users, products);
+                    Tusc.Start(users, products, ui);
                 }
 
                 Assert.IsTrue(writer.ToString().Contains("You entered an invalid password"));
@@ -138,7 +141,7 @@ namespace UnitTestProject
                 {
                     Console.SetIn(reader);
 
-                    Tusc.Start(users, products);
+                    Tusc.Start(users, products, ui);
                 }
 
                 Assert.IsTrue(writer.ToString().Contains("Purchase cancelled"));
@@ -161,7 +164,7 @@ namespace UnitTestProject
                 {
                     Console.SetIn(reader);
 
-                    Tusc.Start(tempUsers, products);
+                    Tusc.Start(tempUsers, products, ui);
                 }
 
                 Assert.IsTrue(writer.ToString().Contains("You do not have enough money to buy that"));
@@ -183,7 +186,7 @@ namespace UnitTestProject
                 {
                     Console.SetIn(reader);
 
-                    Tusc.Start(users, tempProducts);
+                    Tusc.Start(users, tempProducts, ui);
                 }
 
                 Assert.IsTrue(writer.ToString().Contains("is out of stock"));

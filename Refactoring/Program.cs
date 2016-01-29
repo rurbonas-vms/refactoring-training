@@ -17,7 +17,9 @@ namespace Refactoring
             // Load products from data file
             List<Product> products = JsonConvert.DeserializeObject<List<Product>>(File.ReadAllText(@"Data/Products.json"));
 
-            Tusc.Start(users, products);
+            UserInterface ui = new ConsoleUserInterface();
+
+            Tusc.Start(users, products, ui);
         }
     }
 }

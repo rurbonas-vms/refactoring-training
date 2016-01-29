@@ -27,11 +27,10 @@ namespace Refactoring
             Console.ReadLine();
         }
 
-        public static void Start(List<User> usrs, List<Product> prods)
+        public static void Start(List<User> usrs, List<Product> prods, UserInterface ui)
         {
             // Write welcome message
-            Console.WriteLine("Welcome to TUSC");
-            Console.WriteLine("---------------");
+            ui.displayBanner("Welcome to TUSC");
 
             // Login
             Login:
