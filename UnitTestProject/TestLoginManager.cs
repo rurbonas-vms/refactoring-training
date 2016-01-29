@@ -117,7 +117,7 @@ namespace UnitTestProject
             ui.queueStringResponse("FakePassword");
             loginManager.login();
             ICollection<string> inputLabels = ui.getStringInputLabels();
-            //Assert.AreEqual(3, inputLabels.Count);
+            Assert.AreEqual(3, inputLabels.Count);
             Assert.AreEqual("\r\nEnter Username:", inputLabels.ElementAt(0));
             Assert.AreEqual("Enter Password:", inputLabels.ElementAt(1));
             Assert.AreEqual("\r\nEnter Username:", inputLabels.ElementAt(2));
