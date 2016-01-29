@@ -52,7 +52,6 @@ namespace Refactoring
                 // Check if user entered number that equals product count
                 if (selectedProductIndex == products.Count)
                 {
-                    saveDataToDisk(users, products);
                     ui.promptUserToExit();
                     return;
                 }
@@ -97,17 +96,6 @@ namespace Refactoring
                     }
                 }
             }
-        }
-
-        private static void saveDataToDisk(List<User> users, List<Product> products)
-        {
-            // Write out new balance
-            string usersJSON = JsonConvert.SerializeObject(users, Formatting.Indented);
-            File.WriteAllText(@"Data/Users.json", usersJSON);
-
-            // Write out new quantities
-            string productsJSON = JsonConvert.SerializeObject(products, Formatting.Indented);
-            File.WriteAllText(@"Data/Products.json", productsJSON);
         }
     }
 }
