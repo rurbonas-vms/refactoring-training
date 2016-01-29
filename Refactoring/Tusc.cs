@@ -33,7 +33,7 @@ namespace Refactoring
             string userName = ui.getStringInputFromUser("\r\nEnter Username:"); // TODO: Deal with the extra line we need to add here
 
             // Validate Username
-            bool isValidUserName = false; // Is valid user?
+            bool isValidUserName = false;
             if (!string.IsNullOrEmpty(userName))
             {
                 for (int i = 0; i < 5; i++)
@@ -53,7 +53,7 @@ namespace Refactoring
                     string password = ui.getStringInputFromUser("Enter Password:");
 
                     // Validate Password
-                    bool isValidPassword = false; // Is valid password?
+                    bool isValidPassword = false;
                     for (int i = 0; i < 5; i++)
                     {
                         User user = users[i];
