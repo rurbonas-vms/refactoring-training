@@ -93,7 +93,7 @@ namespace Refactoring
                     }
 
                     // Check if quantity is less than quantity
-                    if (selectedProduct.Qty <= quantityToPurchase)
+                    if (selectedProduct.Quantity <= quantityToPurchase)
                     {
                         writeMessages(ConsoleColor.Red, "Sorry, " + selectedProduct.Name + " is out of stock");
                         continue;
@@ -106,7 +106,7 @@ namespace Refactoring
                         loggedInUser.Balance = loggedInUser.Balance - selectedProduct.Price * quantityToPurchase;
 
                         // Quanity = Quantity - Quantity
-                        selectedProduct.Qty = selectedProduct.Qty - quantityToPurchase;
+                        selectedProduct.Quantity = selectedProduct.Quantity - quantityToPurchase;
 
                         writeMessages(ConsoleColor.Green, "You bought " + quantityToPurchase + " " + selectedProduct.Name, "Your new balance is " + loggedInUser.Balance.ToString("C"));
                     }
