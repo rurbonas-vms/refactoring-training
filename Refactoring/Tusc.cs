@@ -37,9 +37,7 @@ namespace Refactoring
             bool loggedIn = false; // Is logged in?
 
             // Prompt for user input
-            Console.WriteLine();
-            Console.WriteLine("Enter Username:");
-            string name = Console.ReadLine();
+            string name = ui.getStringInputFromUser("\r\nEnter Username:"); // TODO: Deal with the extra line we need to add here
 
             // Validate Username
             bool valUsr = false; // Is valid user?
@@ -59,8 +57,7 @@ namespace Refactoring
                 if (valUsr)
                 {
                     // Prompt for user input
-                    Console.WriteLine("Enter Password:");
-                    string pwd = Console.ReadLine();
+                    string pwd = ui.getStringInputFromUser("Enter Password:");
 
                     // Validate Password
                     bool valPwd = false; // Is valid password?
@@ -114,8 +111,7 @@ namespace Refactoring
                             Console.WriteLine(prods.Count + 1 + ": Exit");
 
                             // Prompt for user input
-                            Console.WriteLine("Enter a number:");
-                            string answer = Console.ReadLine();
+                            string answer = ui.getStringInputFromUser("Enter a number:");
                             int num = Convert.ToInt32(answer);
                             num = num - 1; /* Subtract 1 from number
                             num = num + 1 // Add 1 to number */
@@ -153,8 +149,7 @@ namespace Refactoring
                                 Console.WriteLine("Your balance is " + bal.ToString("C"));
 
                                 // Prompt for user input
-                                Console.WriteLine("Enter amount to purchase:");
-                                answer = Console.ReadLine();
+                                answer = ui.getStringInputFromUser("Enter amount to purchase:");
                                 int qty = Convert.ToInt32(answer);
 
                                 // Check if balance - quantity * price is less than 0

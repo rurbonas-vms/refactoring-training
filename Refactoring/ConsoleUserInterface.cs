@@ -13,5 +13,12 @@ namespace Refactoring
             Console.WriteLine(bannerText);
             Console.WriteLine(new string('-', bannerText.Length));
         }
+
+        public string getStringInputFromUser(string labelText)
+        {
+            Console.WriteLine();
+            Console.WriteLine(labelText);
+            return Console.ReadLine();
+        }
     }
 }

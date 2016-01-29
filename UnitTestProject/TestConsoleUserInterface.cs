@@ -35,5 +35,39 @@ namespace UnitTestProject
                 Assert.IsTrue(writer.ToString().Contains("------------------"));
             }
         }
+
+        [Test]
+        public void testGetStringInputFromUserSendsLabelText()
+        {
+            using (var writer = new StringWriter())
+            {
+                Console.SetOut(writer);
+
+                using (var reader = new StringReader("Test\r\n"))
+                {
+                    Console.SetIn(reader);
+                    UserInterface ui = new ConsoleUserInterface();
+                    string userInput = ui.getStringInputFromUser("This is my label: ");
+                    Assert.IsTrue(writer.ToString().Contains("This is my label: "));
+                }
+            }
+        }
+
+        [Test]
+        public void testGetStringInputFromUserReturnsTheUserInput()
+        {
+            using (var writer = new StringWriter())
+            {
+                Console.SetOut(writer);
+
+                using (var reader = new StringReader("Test\r\n"))
+                {
+                    Console.SetIn(reader);
+                    UserInterface ui = new ConsoleUserInterface();
+                    string userInput = ui.getStringInputFromUser("This is my label: ");
+                    Assert.AreEqual("Test", userInput);
+                }
+            }
+        }
     }
 }

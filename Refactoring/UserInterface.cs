@@ -9,5 +9,6 @@ namespace Refactoring
     public interface UserInterface
     {
         void displayBanner(string bannerText);
+        string getStringInputFromUser(string labelText);
     }
 }
