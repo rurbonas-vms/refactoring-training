@@ -20,13 +20,6 @@ namespace Refactoring
             Console.ResetColor();
         }
 
-        private static void promptUserToExit()
-        {
-            Console.WriteLine();
-            Console.WriteLine("Press Enter key to exit");
-            Console.ReadLine();
-        }
-
         public static void Start(List<User> usrs, List<Product> prods, UserInterface ui)
         {
             // Write welcome message
@@ -139,7 +132,7 @@ namespace Refactoring
 
 
                                 // Prevent console from closing
-                                promptUserToExit();
+                                ui.promptUserToExit();
                                 return;
                             }
                             else
@@ -203,7 +196,7 @@ namespace Refactoring
             }
 
             // Prevent console from closing
-            promptUserToExit();
+            ui.promptUserToExit();
         }
     }
 }

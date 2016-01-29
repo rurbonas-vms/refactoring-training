@@ -69,5 +69,22 @@ namespace UnitTestProject
                 }
             }
         }
+
+        [Test]
+        public void testPromptUserToExitIncludesText()
+        {
+            using (var writer = new StringWriter())
+            {
+                Console.SetOut(writer);
+
+                using (var reader = new StringReader("\r\n"))
+                {
+                    Console.SetIn(reader);
+                    UserInterface ui = new ConsoleUserInterface();
+                    ui.promptUserToExit();
+                    Assert.IsTrue(writer.ToString().Contains("\r\nPress Enter key to exit"));
+                }
+            }
+        }
     }
 }

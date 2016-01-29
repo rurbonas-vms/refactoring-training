@@ -10,5 +10,6 @@ namespace Refactoring
     {
         void displayBanner(string bannerText);
         string getStringInputFromUser(string labelText);
+        void promptUserToExit();
     }
 }

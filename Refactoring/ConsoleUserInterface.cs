@@ -20,5 +20,12 @@ namespace Refactoring
             Console.WriteLine(labelText);
             return Console.ReadLine();
         }
+
+        public void promptUserToExit()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Press Enter key to exit");
+            Console.ReadLine();
+        }
     }
 }
