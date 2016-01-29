@@ -11,6 +11,7 @@ namespace UnitTestProject
     {
         private List<string> stringInputLabels = new List<string>();
         private Queue<string> stringResponses = new Queue<string>();
+        private string errorText;
 
         public void displayBanner(string bannerText)
         {
@@ -34,6 +35,18 @@ namespace UnitTestProject
         public void queueStringResponse(string response)
         {
             stringResponses.Enqueue(response);
+        }
+
+        public void displayError(params string[] errorText) 
+        {
+            this.errorText = errorText[0];
+        }
+        public void displayWarning(params string[] warningText) { }
+        public void displayNotice(params string[] noticeText) { }
+
+        public string getErrorText()
+        {
+            return errorText;
         }
     }
 }

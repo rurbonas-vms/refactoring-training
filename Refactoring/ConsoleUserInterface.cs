@@ -27,5 +27,30 @@ namespace Refactoring
             Console.WriteLine("Press Enter key to exit");
             Console.ReadLine();
         }
+
+        public void displayError(params string[] errorText)
+        {
+            displayMessageWithColor(ConsoleColor.Red, errorText);
+        }
+
+        public void displayWarning(params string[] warningText)
+        {
+            displayMessageWithColor(ConsoleColor.Yellow, warningText);
+        }
+
+        public void displayNotice(params string[] noticeText)
+        {
+            displayMessageWithColor(ConsoleColor.Green, noticeText);
+        }
+
+        private void displayMessageWithColor(ConsoleColor color, params string[] messages)
+        {
+            Console.Clear();
+            Console.ForegroundColor = color;
+            Console.WriteLine();
+            foreach (string message in messages)
+                Console.WriteLine(message);
+            Console.ResetColor();
+        }
     }
 }

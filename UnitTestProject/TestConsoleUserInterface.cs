@@ -86,5 +86,45 @@ namespace UnitTestProject
                 }
             }
         }
+
+        // RFUTODO: It would be nice to test that the colour gets set and reset as part of the error/warning/notice calls, too
+        // RFUTODO: We should also demonstrate that multi-string messages work
+
+        [Test]
+        public void testDisplayErrorIncludesText()
+        {
+            using (var writer = new StringWriter())
+            {
+                Console.SetOut(writer);
+                 UserInterface ui = new ConsoleUserInterface();
+                ui.displayError("ERRORERROR");
+                Assert.IsTrue(writer.ToString().Contains("ERRORERROR"));
+            }
+        }
+
+        [Test]
+        public void testDisplayWarningIncludesText()
+        {
+            using (var writer = new StringWriter())
+            {
+                Console.SetOut(writer);
+                UserInterface ui = new ConsoleUserInterface();
+                ui.displayWarning("WARNINGWARNING");
+                Assert.IsTrue(writer.ToString().Contains("WARNINGWARNING"));
+            }
+        }
+
+        [Test]
+        public void testDisplayNoticeIncludesText()
+        {
+            using (var writer = new StringWriter())
+            {
+                Console.SetOut(writer);
+                UserInterface ui = new ConsoleUserInterface();
+                ui.displayNotice("NOTICENOTICE");
+                Assert.IsTrue(writer.ToString().Contains("NOTICENOTICE"));
+            }
+        }
+
     }
 }

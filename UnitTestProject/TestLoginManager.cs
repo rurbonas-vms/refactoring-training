@@ -57,5 +57,37 @@ namespace UnitTestProject
             User user = loginmanager.login();
             Assert.Null(user);
         }
+
+        [Test]
+        public void testIfUserProvidesBlankUserNameReturnNull()
+        {
+            LoginManager loginmanager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse("");
+            User user = loginmanager.login();
+            Assert.Null(user);
+        }
+
+        [Test]
+        public void testIfUserProvidesBadUserNameTheyGetAnError()
+        {
+            LoginManager loginmanager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse("NotARealUserName");
+            ui.queueStringResponse("");
+            User user = loginmanager.login();
+            Assert.AreEqual("You entered an invalid user.", ui.getErrorText());
+        }
+
+        [Test]
+        public void testIfUserProvidesBadUserNameTheyAreAskedAgain()
+        {
+            LoginManager loginManager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse("NotARealUserName");
+            ui.queueStringResponse("");
+            loginManager.login();
+            ICollection<string> inputLabels = ui.getStringInputLabels();
+            Assert.AreEqual(2, inputLabels.Count);
+            foreach (string inputLabel in inputLabels)
+                Assert.AreEqual("\r\nEnter Username:", inputLabel);
+        }
     }
 }

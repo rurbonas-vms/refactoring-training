@@ -9,6 +9,7 @@ namespace Refactoring
     public class LoginManager
     {
         private UserInterface ui;
+        private List<User> users;
 
         public LoginManager(List<User> users, UserInterface ui) // TODO: Make this an IEnumerable once we've changed the code to remove the indexing operators
         {
@@ -18,15 +19,47 @@ namespace Refactoring
             if (ui == null)
                 throw new ArgumentException();
 
+            this.users = users;
             this.ui = ui;
         }
 
         public User login()
         {
-            // Prompt for user input
-            string userName = ui.getStringInputFromUser("\r\nEnter Username:"); // TODO: Deal with the extra line we need to add here
+            while (true) // RFUTODO: Temporary!
+            {
+                // Prompt for user input
+                string userName = ui.getStringInputFromUser("\r\nEnter Username:"); // TODO: Deal with the extra line we need to add here
 
-            return null;
+                // Validate Username
+                bool isValidUserName = false;
+                if (!string.IsNullOrEmpty(userName))
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        User user = users[i];
+                        // Check that name matches
+                        if (user.Name == userName)
+                        {
+                            isValidUserName = true;
+                        }
+                    }
+
+                    // if valid user
+                    if (isValidUserName)
+                    {
+                        // RFUTODO: More here
+                    }
+                    else
+                    {
+                        // Invalid User
+                        ui.displayError("You entered an invalid user.");
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
         }
     }
 }
