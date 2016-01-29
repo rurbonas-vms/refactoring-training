@@ -90,6 +90,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="FakeUserInterface.cs" />
     <Compile Include="TestConsoleUserInterface.cs" />
     <Compile Include="TestLoginManager.cs" />
     <Compile Include="UnitTests.cs" />

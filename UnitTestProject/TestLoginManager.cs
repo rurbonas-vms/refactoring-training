@@ -11,14 +11,39 @@ namespace UnitTestProject
     [TestFixture]
     public class TestLoginManager
     {
+        List<User> sampleUsers;
+        UserInterface ui = new FakeUserInterface();
+
+        [SetUp]
+        public void setUp()
+        {
+            sampleUsers = new List<User>();
+            sampleUsers.Add(new User {Name = "Al", Bal = 1.0, Pwd = "lA"});
+            sampleUsers.Add(new User {Name = "Beth", Bal = 2.0, Pwd = "hteB"});
+            sampleUsers.Add(new User {Name = "Carl", Bal = 3.0, Pwd = "lraC"});
+            sampleUsers.Add(new User {Name = "Dana", Bal = 4.0, Pwd = "anaD"});
+            sampleUsers.Add(new User {Name = "Ed", Bal = 5.0, Pwd = "dE"});
+            sampleUsers.Add(new User {Name = "Fara", Bal = 6.0, Pwd = "araF"});
+        }
+
         [Test]
         [ExpectedException("System.ArgumentException")]
         public void testCannotBeCreatedWithoutUserList()
         {
-            LoginManager loginManager = new LoginManager(null);
+            LoginManager loginManager = new LoginManager(null, ui);
         }
 
         [Test]
-        
+        [ExpectedException("System.ArgumentException")]
+        public void testCannotBeCreatedWithoutUi()
+        {
+            LoginManager loginManager = new LoginManager(sampleUsers, null);
+        }
+
+        [Test]
+        public void testLoginAsksForAUserName()
+        {
+            LoginManager loginManager = new LoginManager(sampleUsers, ui);
+        }
     }
 }

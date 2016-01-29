@@ -8,9 +8,12 @@ namespace Refactoring
 {
     public class LoginManager
     {
-        public LoginManager(List<User> users) // TODO: Make this an IEnumerable once we've changed the code to remove the indexing operators
+        public LoginManager(List<User> users, UserInterface ui) // TODO: Make this an IEnumerable once we've changed the code to remove the indexing operators
         {
             if (users == null)
+                throw new ArgumentException();
+
+            if (ui == null)
                 throw new ArgumentException();
         }
     }
