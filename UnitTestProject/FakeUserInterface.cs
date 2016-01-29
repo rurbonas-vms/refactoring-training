@@ -41,7 +41,9 @@ namespace UnitTestProject
         {
             this.errorText = errorText[0];
         }
+
         public void displayWarning(params string[] warningText) { }
+
         public void displayNotice(params string[] noticeText) { }
 
         public string getErrorText()

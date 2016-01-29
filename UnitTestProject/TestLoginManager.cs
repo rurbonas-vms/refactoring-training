@@ -12,7 +12,7 @@ namespace UnitTestProject
     public class TestLoginManager
     {
         List<User> sampleUsers;
-        FakeUserInterface ui = new FakeUserInterface();
+        FakeUserInterface ui;
 
         [SetUp]
         public void setUp()
@@ -24,6 +24,8 @@ namespace UnitTestProject
             sampleUsers.Add(new User {Name = "Dana", Bal = 4.0, Pwd = "anaD"});
             sampleUsers.Add(new User {Name = "Ed", Bal = 5.0, Pwd = "dE"});
             sampleUsers.Add(new User {Name = "Fara", Bal = 6.0, Pwd = "araF"});
+
+            ui = new FakeUserInterface();
         }
 
         [Test]
@@ -105,6 +107,20 @@ namespace UnitTestProject
             ui.queueStringResponse("FakePassword");
             loginManager.login();
             Assert.AreEqual("You entered an invalid password.", ui.getErrorText());
+        }
+
+        [Test]
+        public void testIfUserProvidesBadUserNameTheyAreAskedToLoginAgain()
+        {
+            LoginManager loginManager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse("Al");
+            ui.queueStringResponse("FakePassword");
+            loginManager.login();
+            ICollection<string> inputLabels = ui.getStringInputLabels();
+            //Assert.AreEqual(3, inputLabels.Count);
+            Assert.AreEqual("\r\nEnter Username:", inputLabels.ElementAt(0));
+            Assert.AreEqual("Enter Password:", inputLabels.ElementAt(1));
+            Assert.AreEqual("\r\nEnter Username:", inputLabels.ElementAt(2));
         }
     }
 }
