@@ -9,9 +9,9 @@ namespace Refactoring
     public class LoginManager
     {
         private UserInterface ui;
-        private List<User> users;
+        private IEnumerable<User> users;
 
-        public LoginManager(List<User> users, UserInterface ui) // TODO: Make this an IEnumerable once we've changed the code to remove the indexing operators
+        public LoginManager(IEnumerable<User> users, UserInterface ui)
         {
             if (users == null)
                 throw new ArgumentException();
@@ -30,30 +30,24 @@ namespace Refactoring
                 // Prompt for user input
                 string userName = ui.getStringInputFromUser(Environment.NewLine + "Enter Username:"); // TODO: Deal with the extra line we need to add here
 
-                if (!string.IsNullOrEmpty(userName))
+                if (string.IsNullOrEmpty(userName))
+                    return null;
+
+                if (users.Any(user => user.Name == userName))
                 {
-                    if (users.Any(user => user.Name == userName))
-                    {
-                        // Prompt for user input
-                        string password = ui.getStringInputFromUser("Enter Password:");
+                    // Prompt for user input
+                    string password = ui.getStringInputFromUser("Enter Password:");
 
-                        User matchingUser = users.FirstOrDefault(user => user.Name == userName && user.Pwd == password);
+                    User matchingUser = users.FirstOrDefault(user => user.Name == userName && user.Pwd == password);
 
-                        if (matchingUser != null)
-                            return matchingUser;
+                    if (matchingUser != null)
+                        return matchingUser;
 
-                        // Invalid Password
-                        ui.displayError("You entered an invalid password.");
-                    }
-                    else
-                    {
-                        // Invalid User
-                        ui.displayError("You entered an invalid user.");
-                    }
+                    ui.displayError("You entered an invalid password.");
                 }
                 else
                 {
-                    return null;
+                    ui.displayError("You entered an invalid user.");
                 }
             }
         }
