@@ -49,7 +49,30 @@ namespace Refactoring
                     {
                         // Prompt for user input
                         string password = ui.getStringInputFromUser("Enter Password:");
-                        return null; // RFUTODO: More to come
+                        
+                        // Validate Password
+                        bool isValidPassword = false;
+                        for (int i = 0; i < 5; i++)
+                        {
+                            User user = users[i];
+
+                            // Check that name and password match
+                            if (user.Name == userName && user.Pwd == password)
+                            {
+                                isValidPassword = true;
+                            }
+                        }
+
+                        // if valid password
+                        if (isValidPassword == true)
+                        {
+                            return null; // RFUTODO: More to come
+                        }
+                        else
+                        {
+                            // Invalid Password
+                            ui.displayError("You entered an invalid password.");
+                        }
 
                     }
                     else

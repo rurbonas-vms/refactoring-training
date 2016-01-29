@@ -20,7 +20,7 @@ namespace UnitTestProject
         public string getStringInputFromUser(string labelText)
         {
             stringInputLabels.Add(labelText);
-            return stringResponses.Dequeue();
+            return stringResponses.Any() ? stringResponses.Dequeue() : null;
         }
 
         public void promptUserToExit()
