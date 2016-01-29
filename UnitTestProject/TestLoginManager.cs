@@ -122,5 +122,15 @@ namespace UnitTestProject
             Assert.AreEqual("Enter Password:", inputLabels.ElementAt(1));
             Assert.AreEqual("\r\nEnter Username:", inputLabels.ElementAt(2));
         }
+
+        [Test]
+        public void testIfUserProvidesGoodUserNameAndPasswordTheyGetThatUserBack()
+        {
+            LoginManager loginManager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse("Carl");
+            ui.queueStringResponse("lraC");
+            User user = loginManager.login();
+            Assert.AreEqual(sampleUsers[2], user);
+        }
     }
 }
