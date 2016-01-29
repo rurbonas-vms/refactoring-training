@@ -23,6 +23,16 @@ namespace Refactoring
             this.ui = ui;
         }
 
+        private bool isUserNameValid(string userName)
+        {
+            return users.Any(user => user.Name == userName);
+        }
+
+        private User getUserByUserNameAndPassword(string userName, string password)
+        {
+            return users.FirstOrDefault(user => user.Name == userName && user.Pwd == password);
+        }
+
         public User login()
         {
             while (true) // RFUTODO: Temporary!
@@ -33,12 +43,11 @@ namespace Refactoring
                 if (string.IsNullOrEmpty(userName))
                     return null;
 
-                if (users.Any(user => user.Name == userName))
+                if (isUserNameValid(userName))
                 {
-                    // Prompt for user input
                     string password = ui.getStringInputFromUser("Enter Password:");
 
-                    User matchingUser = users.FirstOrDefault(user => user.Name == userName && user.Pwd == password);
+                    User matchingUser = getUserByUserNameAndPassword(userName, password);
 
                     if (matchingUser != null)
                         return matchingUser;
