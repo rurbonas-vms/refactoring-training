@@ -10,6 +10,15 @@ namespace Refactoring
 {
     public class Tusc
     {
+        private static void writeMessage(ConsoleColor color, String message)
+        {
+            Console.Clear();
+            Console.ForegroundColor = color;
+            Console.WriteLine();
+            Console.WriteLine(message);
+            Console.ResetColor();
+        }
+
         public static void Start(List<User> usrs, List<Product> prods)
         {
             // Write welcome message
@@ -65,11 +74,7 @@ namespace Refactoring
                         loggedIn = true;
 
                         // Show welcome message
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine();
-                        Console.WriteLine("Login successful! Welcome " + name + "!");
-                        Console.ResetColor();
+                        writeMessage(ConsoleColor.Green, "Login successful! Welcome " + name + "!");
                         
                         // Show remaining balance
                         double bal = 0;
@@ -150,22 +155,14 @@ namespace Refactoring
                                 // Check if balance - quantity * price is less than 0
                                 if (bal - prods[num].Price * qty < 0)
                                 {
-                                    Console.Clear();
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine();
-                                    Console.WriteLine("You do not have enough money to buy that.");
-                                    Console.ResetColor();
+                                    writeMessage(ConsoleColor.Red, "You do not have enough money to buy that.");
                                     continue;
                                 }
 
                                 // Check if quantity is less than quantity
                                 if (prods[num].Qty <= qty)
                                 {
-                                    Console.Clear();
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine();
-                                    Console.WriteLine("Sorry, " + prods[num].Name + " is out of stock");
-                                    Console.ResetColor();
+                                    writeMessage(ConsoleColor.Red, "Sorry, " + prods[num].Name + " is out of stock");
                                     continue;
                                 }
 
@@ -187,11 +184,7 @@ namespace Refactoring
                                 else
                                 {
                                     // Quantity is less than zero
-                                    Console.Clear();
-                                    Console.ForegroundColor = ConsoleColor.Yellow;
-                                    Console.WriteLine();
-                                    Console.WriteLine("Purchase cancelled");
-                                    Console.ResetColor();
+                                    writeMessage(ConsoleColor.Yellow, "Purchase cancelled");
                                 }
                             }
                         }
@@ -199,11 +192,7 @@ namespace Refactoring
                     else
                     {
                         // Invalid Password
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine();
-                        Console.WriteLine("You entered an invalid password.");
-                        Console.ResetColor();
+                        writeMessage(ConsoleColor.Red, "You entered an invalid password.");
 
                         goto Login;
                     }
@@ -211,11 +200,7 @@ namespace Refactoring
                 else
                 {
                     // Invalid User
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine();
-                    Console.WriteLine("You entered an invalid user.");
-                    Console.ResetColor();
+                    writeMessage(ConsoleColor.Red, "You entered an invalid user.");
 
                     goto Login;
                 }
