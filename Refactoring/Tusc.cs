@@ -39,8 +39,8 @@ namespace Refactoring
                 Console.WriteLine("What would you like to buy?");
                 for (int i = 0; i < 7; i++)
                 {
-                    Product prod = products[i];
-                    Console.WriteLine(i + 1 + ": " + prod.Name + " (" + prod.Price.ToString("C") + ")");
+                    Product product = products[i];
+                    Console.WriteLine(i + 1 + ": " + product.Name + " (" + product.Price.ToString("C") + ")");
                 }
                 Console.WriteLine(products.Count + 1 + ": Exit");
 
