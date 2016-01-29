@@ -13,9 +13,12 @@ namespace UnitTestProject
     {
         [Test]
         [ExpectedException("System.ArgumentException")]
-        public void testLoginManagerCannotBeCreatedWithoutUserList()
+        public void testCannotBeCreatedWithoutUserList()
         {
             LoginManager loginManager = new LoginManager(null);
-        }        
+        }
+
+        [Test]
+        
     }
 }

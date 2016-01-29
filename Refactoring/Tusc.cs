@@ -106,8 +106,7 @@ namespace Refactoring
                             // Prompt for user input
                             string answer = ui.getStringInputFromUser("Enter a number:");
                             int num = Convert.ToInt32(answer);
-                            num = num - 1; /* Subtract 1 from number
-                            num = num + 1 // Add 1 to number */
+                            num = num - 1; 
 
                             // Check if user entered number that equals product count
                             if (num == 7)
