@@ -93,6 +93,7 @@
     <Compile Include="FakeUserInterface.cs" />
     <Compile Include="TestConsoleUserInterface.cs" />
     <Compile Include="TestLoginManager.cs" />
+    <Compile Include="TestStore.cs" />
     <Compile Include="UnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
