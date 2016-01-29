@@ -12,7 +12,7 @@ namespace UnitTestProject
     public class TestLoginManager
     {
         List<User> sampleUsers;
-        UserInterface ui = new FakeUserInterface();
+        FakeUserInterface ui = new FakeUserInterface();
 
         [SetUp]
         public void setUp()
@@ -44,6 +44,8 @@ namespace UnitTestProject
         public void testLoginAsksForAUserName()
         {
             LoginManager loginManager = new LoginManager(sampleUsers, ui);
+            loginManager.login();
+            Assert.That(ui.getStringInputLabels(), Contains.Item("\r\nEnter Username:"));
         }
     }
 }
