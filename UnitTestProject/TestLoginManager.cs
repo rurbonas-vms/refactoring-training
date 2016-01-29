@@ -50,7 +50,7 @@ namespace UnitTestProject
             LoginManager loginManager = new LoginManager(sampleUsers, ui);
             ui.queueStringResponse(null);
             loginManager.login();
-            Assert.That(ui.getStringInputLabels(), Contains.Item("\r\nEnter Username:"));
+            Assert.That(ui.getStringInputLabels(), Contains.Item(Environment.NewLine + "Enter Username:"));
         }
 
         [Test]
@@ -89,7 +89,7 @@ namespace UnitTestProject
             ICollection<string> inputLabels = ui.getStringInputLabels();
             Assert.AreEqual(2, inputLabels.Count);
             foreach (string inputLabel in inputLabels)
-                Assert.AreEqual("\r\nEnter Username:", inputLabel);
+                Assert.AreEqual(Environment.NewLine + "Enter Username:", inputLabel);
         }
 
         [Test]
@@ -120,9 +120,9 @@ namespace UnitTestProject
             loginManager.login();
             ICollection<string> inputLabels = ui.getStringInputLabels();
             Assert.AreEqual(3, inputLabels.Count);
-            Assert.AreEqual("\r\nEnter Username:", inputLabels.ElementAt(0));
+            Assert.AreEqual(Environment.NewLine + "Enter Username:", inputLabels.ElementAt(0));
             Assert.AreEqual("Enter Password:", inputLabels.ElementAt(1));
-            Assert.AreEqual("\r\nEnter Username:", inputLabels.ElementAt(2));
+            Assert.AreEqual(Environment.NewLine + "Enter Username:", inputLabels.ElementAt(2));
         }
 
         [Test]

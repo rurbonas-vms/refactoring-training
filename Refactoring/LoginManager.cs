@@ -30,34 +30,17 @@ namespace Refactoring
                 // Prompt for user input
                 string userName = ui.getStringInputFromUser(Environment.NewLine + "Enter Username:"); // TODO: Deal with the extra line we need to add here
 
-                // Validate Username
-                bool isValidUserName = false;
                 if (!string.IsNullOrEmpty(userName))
                 {
-                    foreach (User user in users)
-                    {
-                        // Check that name matches
-                        if (user.Name == userName)
-                        {
-                            isValidUserName = true;
-                        }
-                    }
-
-                    // if valid user
-                    if (isValidUserName)
+                    if (users.Any(user => user.Name == userName))
                     {
                         // Prompt for user input
                         string password = ui.getStringInputFromUser("Enter Password:");
-                        
-                        // Validate Password
-                        foreach (User user in users)
-                        {
-                            // Check that name and password match
-                            if (user.Name == userName && user.Pwd == password)
-                            {
-                                return user;
-                            }
-                        }
+
+                        User matchingUser = users.FirstOrDefault(user => user.Name == userName && user.Pwd == password);
+
+                        if (matchingUser != null)
+                            return matchingUser;
 
                         // Invalid Password
                         ui.displayError("You entered an invalid password.");
