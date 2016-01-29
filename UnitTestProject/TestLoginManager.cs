@@ -72,7 +72,7 @@ namespace UnitTestProject
         {
             LoginManager loginmanager = new LoginManager(sampleUsers, ui);
             ui.queueStringResponse("NotARealUserName");
-            ui.queueStringResponse("");
+            ui.queueStringResponse(null);
             User user = loginmanager.login();
             Assert.AreEqual("You entered an invalid user.", ui.getErrorText());
         }
@@ -82,12 +82,22 @@ namespace UnitTestProject
         {
             LoginManager loginManager = new LoginManager(sampleUsers, ui);
             ui.queueStringResponse("NotARealUserName");
-            ui.queueStringResponse("");
+            ui.queueStringResponse(null);
             loginManager.login();
             ICollection<string> inputLabels = ui.getStringInputLabels();
             Assert.AreEqual(2, inputLabels.Count);
             foreach (string inputLabel in inputLabels)
                 Assert.AreEqual("\r\nEnter Username:", inputLabel);
+        }
+
+        [Test]
+        public void testIfUserProvidesGoodUserNameTheyAreAskedForAPassword()
+        {
+            LoginManager loginManager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse("Al");
+            ui.queueStringResponse(null);
+            loginManager.login();
+            Assert.That(ui.getStringInputLabels(), Contains.Item("Enter Password:"));
         }
     }
 }

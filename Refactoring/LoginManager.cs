@@ -47,7 +47,10 @@ namespace Refactoring
                     // if valid user
                     if (isValidUserName)
                     {
-                        // RFUTODO: More here
+                        // Prompt for user input
+                        string password = ui.getStringInputFromUser("Enter Password:");
+                        return null; // RFUTODO: More to come
+
                     }
                     else
                     {
