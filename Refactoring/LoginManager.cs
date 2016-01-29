@@ -34,9 +34,8 @@ namespace Refactoring
                 bool isValidUserName = false;
                 if (!string.IsNullOrEmpty(userName))
                 {
-                    for (int i = 0; i < 5; i++)
+                    foreach (User user in users)
                     {
-                        User user = users[i];
                         // Check that name matches
                         if (user.Name == userName)
                         {
@@ -51,10 +50,8 @@ namespace Refactoring
                         string password = ui.getStringInputFromUser("Enter Password:");
                         
                         // Validate Password
-                        for (int i = 0; i < 5; i++)
+                        foreach (User user in users)
                         {
-                            User user = users[i];
-
                             // Check that name and password match
                             if (user.Name == userName && user.Pwd == password)
                             {
