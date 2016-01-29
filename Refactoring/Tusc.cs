@@ -20,7 +20,7 @@ namespace Refactoring
             Console.ResetColor();
         }
 
-        public static void Start(List<User> usrs, List<Product> prods, UserInterface ui)
+        public static void Start(List<User> users, List<Product> products, UserInterface ui)
         {
             // Write welcome message
             ui.displayBanner("Welcome to TUSC");
@@ -38,7 +38,7 @@ namespace Refactoring
             {
                 for (int i = 0; i < 5; i++)
                 {
-                    User user = usrs[i];
+                    User user = users[i];
                     // Check that name matches
                     if (user.Name == name)
                     {
@@ -56,7 +56,7 @@ namespace Refactoring
                     bool valPwd = false; // Is valid password?
                     for (int i = 0; i < 5; i++)
                     {
-                        User user = usrs[i];
+                        User user = users[i];
 
                         // Check that name and password match
                         if (user.Name == name && user.Pwd == pwd)
@@ -77,7 +77,7 @@ namespace Refactoring
                         double bal = 0;
                         for (int i = 0; i < 5; i++)
                         {
-                            User usr = usrs[i];
+                            User usr = users[i];
 
                             // Check that name and password match
                             if (usr.Name == name && usr.Pwd == pwd)
@@ -98,10 +98,10 @@ namespace Refactoring
                             Console.WriteLine("What would you like to buy?");
                             for (int i = 0; i < 7; i++)
                             {
-                                Product prod = prods[i];
+                                Product prod = products[i];
                                 Console.WriteLine(i + 1 + ": " + prod.Name + " (" + prod.Price.ToString("C") + ")");
                             }
-                            Console.WriteLine(prods.Count + 1 + ": Exit");
+                            Console.WriteLine(products.Count + 1 + ": Exit");
 
                             // Prompt for user input
                             string answer = ui.getStringInputFromUser("Enter a number:");
@@ -113,7 +113,7 @@ namespace Refactoring
                             if (num == 7)
                             {
                                 // Update balance
-                                foreach (var usr in usrs)
+                                foreach (var usr in users)
                                 {
                                     // Check that name and password match
                                     if (usr.Name == name && usr.Pwd == pwd)
@@ -123,11 +123,11 @@ namespace Refactoring
                                 }
 
                                 // Write out new balance
-                                string json = JsonConvert.SerializeObject(usrs, Formatting.Indented);
+                                string json = JsonConvert.SerializeObject(users, Formatting.Indented);
                                 File.WriteAllText(@"Data/Users.json", json);
 
                                 // Write out new quantities
-                                string json2 = JsonConvert.SerializeObject(prods, Formatting.Indented);
+                                string json2 = JsonConvert.SerializeObject(products, Formatting.Indented);
                                 File.WriteAllText(@"Data/Products.json", json2);
 
 
@@ -138,7 +138,7 @@ namespace Refactoring
                             else
                             {
                                 Console.WriteLine();
-                                Console.WriteLine("You want to buy: " + prods[num].Name);
+                                Console.WriteLine("You want to buy: " + products[num].Name);
                                 Console.WriteLine("Your balance is " + bal.ToString("C"));
 
                                 // Prompt for user input
@@ -146,16 +146,16 @@ namespace Refactoring
                                 int qty = Convert.ToInt32(answer);
 
                                 // Check if balance - quantity * price is less than 0
-                                if (bal - prods[num].Price * qty < 0)
+                                if (bal - products[num].Price * qty < 0)
                                 {
                                     writeMessages(ConsoleColor.Red, "You do not have enough money to buy that.");
                                     continue;
                                 }
 
                                 // Check if quantity is less than quantity
-                                if (prods[num].Qty <= qty)
+                                if (products[num].Qty <= qty)
                                 {
-                                    writeMessages(ConsoleColor.Red, "Sorry, " + prods[num].Name + " is out of stock");
+                                    writeMessages(ConsoleColor.Red, "Sorry, " + products[num].Name + " is out of stock");
                                     continue;
                                 }
 
@@ -163,12 +163,12 @@ namespace Refactoring
                                 if (qty > 0)
                                 {
                                     // Balance = Balance - Price * Quantity
-                                    bal = bal - prods[num].Price * qty;
+                                    bal = bal - products[num].Price * qty;
 
                                     // Quanity = Quantity - Quantity
-                                    prods[num].Qty = prods[num].Qty - qty;
+                                    products[num].Qty = products[num].Qty - qty;
 
-                                    writeMessages(ConsoleColor.Green, "You bought " + qty + " " + prods[num].Name, "Your new balance is " + bal.ToString("C"));
+                                    writeMessages(ConsoleColor.Green, "You bought " + qty + " " + products[num].Name, "Your new balance is " + bal.ToString("C"));
                                 }
                                 else
                                 {
