@@ -30,7 +30,7 @@ namespace Refactoring
 
         private User getUserByUserNameAndPassword(string userName, string password)
         {
-            return users.FirstOrDefault(user => user.Name == userName && user.Pwd == password);
+            return users.FirstOrDefault(user => user.Name == userName && user.Password == password);
         }
 
         public User login()

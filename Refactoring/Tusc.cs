@@ -39,7 +39,7 @@ namespace Refactoring
                         
             // Show balance 
             Console.WriteLine();
-            Console.WriteLine("Your balance is " + loggedInUser.Bal.ToString("C"));
+            Console.WriteLine("Your balance is " + loggedInUser.Balance.ToString("C"));
 
             // Show product list
             while (true)
@@ -79,14 +79,14 @@ namespace Refactoring
                 {
                     Console.WriteLine();
                     Console.WriteLine("You want to buy: " + products[num].Name);
-                    Console.WriteLine("Your balance is " + loggedInUser.Bal.ToString("C"));
+                    Console.WriteLine("Your balance is " + loggedInUser.Balance.ToString("C"));
 
                     // Prompt for user input
                     answer = ui.getStringInputFromUser("Enter amount to purchase:");
                     int qty = Convert.ToInt32(answer);
 
                     // Check if balance - quantity * price is less than 0
-                    if (loggedInUser.Bal - products[num].Price * qty < 0)
+                    if (loggedInUser.Balance - products[num].Price * qty < 0)
                     {
                         writeMessages(ConsoleColor.Red, "You do not have enough money to buy that.");
                         continue;
@@ -103,12 +103,12 @@ namespace Refactoring
                     if (qty > 0)
                     {
                         // Balance = Balance - Price * Quantity
-                        loggedInUser.Bal = loggedInUser.Bal - products[num].Price * qty;
+                        loggedInUser.Balance = loggedInUser.Balance - products[num].Price * qty;
 
                         // Quanity = Quantity - Quantity
                         products[num].Qty = products[num].Qty - qty;
 
-                        writeMessages(ConsoleColor.Green, "You bought " + qty + " " + products[num].Name, "Your new balance is " + loggedInUser.Bal.ToString("C"));
+                        writeMessages(ConsoleColor.Green, "You bought " + qty + " " + products[num].Name, "Your new balance is " + loggedInUser.Balance.ToString("C"));
                     }
                     else
                     {

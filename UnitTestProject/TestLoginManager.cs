@@ -18,14 +18,14 @@ namespace UnitTestProject
         public void setUp()
         {
             sampleUsers = new List<User>();
-            sampleUsers.Add(new User {Name = "Al", Bal = 1.0, Pwd = "lA"});
-            sampleUsers.Add(new User {Name = "Beth", Bal = 2.0, Pwd = "hteB"});
-            sampleUsers.Add(new User {Name = "Carl", Bal = 3.0, Pwd = "lraC"});
-            sampleUsers.Add(new User {Name = "Dana", Bal = 4.0, Pwd = "anaD"});
-            sampleUsers.Add(new User {Name = "Ed", Bal = 5.0, Pwd = "dE"});
-            sampleUsers.Add(new User {Name = "Fara", Bal = 6.0, Pwd = "araF"});
-            sampleUsers.Add(new User {Name = "Carl", Bal = 3.0, Pwd = "IAmAlsoCarl"});
-            sampleUsers.Add(new User { Name = "Beth", Bal = 2.0, Pwd = "hteB" });
+            sampleUsers.Add(new User {Name = "Al", Balance = 1.0, Password = "lA"});
+            sampleUsers.Add(new User {Name = "Beth", Balance = 2.0, Password = "hteB"});
+            sampleUsers.Add(new User {Name = "Carl", Balance = 3.0, Password = "lraC"});
+            sampleUsers.Add(new User {Name = "Dana", Balance = 4.0, Password = "anaD"});
+            sampleUsers.Add(new User {Name = "Ed", Balance = 5.0, Password = "dE"});
+            sampleUsers.Add(new User {Name = "Fara", Balance = 6.0, Password = "araF"});
+            sampleUsers.Add(new User {Name = "Carl", Balance = 3.0, Password = "IAmAlsoCarl"});
+            sampleUsers.Add(new User { Name = "Beth", Balance = 2.0, Password = "hteB" });
 
             ui = new FakeUserInterface();
         }
