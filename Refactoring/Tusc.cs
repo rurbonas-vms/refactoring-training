@@ -117,9 +117,6 @@ namespace Refactoring
                     }
                 }
             }
-
-            // Prevent console from closing
-            ui.promptUserToExit();
         }
     }
 }

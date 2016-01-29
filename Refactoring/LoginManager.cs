@@ -28,7 +28,7 @@ namespace Refactoring
             while (true) // RFUTODO: Temporary!
             {
                 // Prompt for user input
-                string userName = ui.getStringInputFromUser("\r\nEnter Username:"); // TODO: Deal with the extra line we need to add here
+                string userName = ui.getStringInputFromUser(Environment.NewLine + "Enter Username:"); // TODO: Deal with the extra line we need to add here
 
                 // Validate Username
                 bool isValidUserName = false;

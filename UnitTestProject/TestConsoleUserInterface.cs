@@ -43,7 +43,7 @@ namespace UnitTestProject
             {
                 Console.SetOut(writer);
 
-                using (var reader = new StringReader("Test\r\n"))
+                using (var reader = new StringReader("Test" + Environment.NewLine))
                 {
                     Console.SetIn(reader);
                     UserInterface ui = new ConsoleUserInterface();
@@ -60,7 +60,7 @@ namespace UnitTestProject
             {
                 Console.SetOut(writer);
 
-                using (var reader = new StringReader("Test\r\n"))
+                using (var reader = new StringReader("Test" + Environment.NewLine))
                 {
                     Console.SetIn(reader);
                     UserInterface ui = new ConsoleUserInterface();
@@ -77,12 +77,12 @@ namespace UnitTestProject
             {
                 Console.SetOut(writer);
 
-                using (var reader = new StringReader("\r\n"))
+                using (var reader = new StringReader(Environment.NewLine))
                 {
                     Console.SetIn(reader);
                     UserInterface ui = new ConsoleUserInterface();
                     ui.promptUserToExit();
-                    Assert.IsTrue(writer.ToString().Contains("\r\nPress Enter key to exit"));
+                    Assert.IsTrue(writer.ToString().Contains(Environment.NewLine + "Press Enter key to exit"));
                 }
             }
         }
