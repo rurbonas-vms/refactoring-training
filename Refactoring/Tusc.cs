@@ -53,8 +53,6 @@ namespace Refactoring
                 if (selectedProductIndex == products.Count)
                 {
                     saveDataToDisk(users, products);
-
-                    // Prevent console from closing
                     ui.promptUserToExit();
                     return;
                 }
@@ -83,7 +81,6 @@ namespace Refactoring
                         continue;
                     }
 
-                    // Check if quantity is greater than zero
                     if (quantityToPurchase > 0)
                     {
                         // Balance = Balance - Price * Quantity
@@ -96,7 +93,6 @@ namespace Refactoring
                     }
                     else
                     {
-                        // Quantity is less than zero
                         ui.displayWarnings("Purchase cancelled");
                     }
                 }
