@@ -132,7 +132,7 @@ namespace UnitTestProject
             ui.queueStringResponse("Carl");
             ui.queueStringResponse("lraC");
             User user = loginManager.login();
-            Assert.AreEqual(sampleUsers[2], user);
+            Assert.AreSame(sampleUsers[2], user);
         }
 
         [Test]
@@ -142,7 +142,7 @@ namespace UnitTestProject
             ui.queueStringResponse("Fara");
             ui.queueStringResponse("araF");
             User user = loginManager.login();
-            Assert.AreEqual(sampleUsers[5], user);
+            Assert.AreSame(sampleUsers[5], user);
         }
 
         [Test]
@@ -152,22 +152,22 @@ namespace UnitTestProject
             ui.queueStringResponse("Carl");
             ui.queueStringResponse("lraC");
             User user = loginManager.login();
-            Assert.AreEqual(sampleUsers[2], user);
+            Assert.AreSame(sampleUsers[2], user);
 
             ui.queueStringResponse("Carl");
             ui.queueStringResponse("IAmAlsoCarl");
             user = loginManager.login();
-            Assert.AreEqual(sampleUsers[6], user);
+            Assert.AreSame(sampleUsers[6], user);
         }
 
         [Test]
-        public void testIfTwoUsersHaveTheSameNameAndPasswordTheFirstOneIsRetrieved()
+        public void testBugfixIfTwoUsersHaveTheSameNameAndPasswordTheFirstOneIsRetrieved()
         {
             LoginManager loginManager = new LoginManager(sampleUsers, ui);
             ui.queueStringResponse("Beth");
             ui.queueStringResponse("hteB");
             User user = loginManager.login();
-            Assert.AreEqual(sampleUsers[1], user);
+            Assert.AreSame(sampleUsers[1], user);
         }
     }
 }
