@@ -11,8 +11,8 @@ namespace Refactoring
         void displayBanner(string bannerText);
         string getStringInputFromUser(string labelText);
         void promptUserToExit();
-        void displayError(params string[] errorText);
-        void displayWarning(params string[] warningText);
-        void displayNotice(params string[] noticeText);
+        void displayErrors(params string[] errorText);
+        void displayWarnings(params string[] warningText);
+        void displayNotices(params string[] noticeText);
     }
 }

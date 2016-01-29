@@ -37,14 +37,14 @@ namespace UnitTestProject
             stringResponses.Enqueue(response);
         }
 
-        public void displayError(params string[] errorText) 
+        public void displayErrors(params string[] errorText) 
         {
             this.errorText = errorText[0];
         }
 
-        public void displayWarning(params string[] warningText) { }
+        public void displayWarnings(params string[] warningText) { }
 
-        public void displayNotice(params string[] noticeText) { }
+        public void displayNotices(params string[] noticeText) { }
 
         public string getErrorText()
         {

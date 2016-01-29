@@ -52,11 +52,11 @@ namespace Refactoring
                     if (matchingUser != null)
                         return matchingUser;
 
-                    ui.displayError("You entered an invalid password.");
+                    ui.displayErrors("You entered an invalid password.");
                 }
                 else
                 {
-                    ui.displayError("You entered an invalid user.");
+                    ui.displayErrors("You entered an invalid user.");
                 }
             }
         }

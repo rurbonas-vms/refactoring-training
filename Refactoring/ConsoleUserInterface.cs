@@ -28,17 +28,17 @@ namespace Refactoring
             Console.ReadLine();
         }
 
-        public void displayError(params string[] errorText)
+        public void displayErrors(params string[] errorText)
         {
             displayMessageWithColor(ConsoleColor.Red, errorText);
         }
 
-        public void displayWarning(params string[] warningText)
+        public void displayWarnings(params string[] warningText)
         {
             displayMessageWithColor(ConsoleColor.Yellow, warningText);
         }
 
-        public void displayNotice(params string[] noticeText)
+        public void displayNotices(params string[] noticeText)
         {
             displayMessageWithColor(ConsoleColor.Green, noticeText);
         }

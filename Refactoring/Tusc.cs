@@ -10,16 +10,6 @@ namespace Refactoring
 {
     public class Tusc
     {
-        private static void writeMessages(ConsoleColor color, params string[] messages)
-        {
-            Console.Clear();
-            Console.ForegroundColor = color;
-            Console.WriteLine();
-            foreach (string message in messages)
-                Console.WriteLine(message);
-            Console.ResetColor();
-        }
-
         public static void Start(List<User> users, List<Product> products, UserInterface ui)
         {
             // Write welcome message
@@ -35,7 +25,7 @@ namespace Refactoring
             }
 
             // Show welcome message
-            writeMessages(ConsoleColor.Green, "Login successful! Welcome " + loggedInUser.Name + "!");
+            ui.displayNotices("Login successful! Welcome " + loggedInUser.Name + "!");
                         
             // Show balance 
             Console.WriteLine();
@@ -63,12 +53,12 @@ namespace Refactoring
                 if (selectedProductIndex == products.Count)
                 {
                     // Write out new balance
-                    string json = JsonConvert.SerializeObject(users, Formatting.Indented);
-                    File.WriteAllText(@"Data/Users.json", json);
+                    string usersJSON = JsonConvert.SerializeObject(users, Formatting.Indented);
+                    File.WriteAllText(@"Data/Users.json", usersJSON);
 
                     // Write out new quantities
-                    string json2 = JsonConvert.SerializeObject(products, Formatting.Indented);
-                    File.WriteAllText(@"Data/Products.json", json2);
+                    string productsJSON = JsonConvert.SerializeObject(products, Formatting.Indented);
+                    File.WriteAllText(@"Data/Products.json", productsJSON);
 
                     // Prevent console from closing
                     ui.promptUserToExit();
@@ -88,14 +78,14 @@ namespace Refactoring
                     // Check if balance - quantity * price is less than 0
                     if (loggedInUser.Balance - selectedProduct.Price * quantityToPurchase < 0)
                     {
-                        writeMessages(ConsoleColor.Red, "You do not have enough money to buy that.");
+                        ui.displayErrors("You do not have enough money to buy that.");
                         continue;
                     }
 
                     // Check if quantity is less than quantity
                     if (selectedProduct.Quantity <= quantityToPurchase)
                     {
-                        writeMessages(ConsoleColor.Red, "Sorry, " + selectedProduct.Name + " is out of stock");
+                        ui.displayErrors("Sorry, " + selectedProduct.Name + " is out of stock");
                         continue;
                     }
 
@@ -108,12 +98,12 @@ namespace Refactoring
                         // Quanity = Quantity - Quantity
                         selectedProduct.Quantity = selectedProduct.Quantity - quantityToPurchase;
 
-                        writeMessages(ConsoleColor.Green, "You bought " + quantityToPurchase + " " + selectedProduct.Name, "Your new balance is " + loggedInUser.Balance.ToString("C"));
+                        ui.displayNotices("You bought " + quantityToPurchase + " " + selectedProduct.Name, "Your new balance is " + loggedInUser.Balance.ToString("C"));
                     }
                     else
                     {
                         // Quantity is less than zero
-                        writeMessages(ConsoleColor.Yellow, "Purchase cancelled");
+                        ui.displayWarnings("Purchase cancelled");
                     }
                 }
             }

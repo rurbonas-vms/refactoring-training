@@ -97,7 +97,7 @@ namespace UnitTestProject
             {
                 Console.SetOut(writer);
                  UserInterface ui = new ConsoleUserInterface();
-                ui.displayError("ERRORERROR");
+                ui.displayErrors("ERRORERROR");
                 Assert.IsTrue(writer.ToString().Contains("ERRORERROR"));
             }
         }
@@ -109,7 +109,7 @@ namespace UnitTestProject
             {
                 Console.SetOut(writer);
                 UserInterface ui = new ConsoleUserInterface();
-                ui.displayWarning("WARNINGWARNING");
+                ui.displayWarnings("WARNINGWARNING");
                 Assert.IsTrue(writer.ToString().Contains("WARNINGWARNING"));
             }
         }
@@ -121,7 +121,7 @@ namespace UnitTestProject
             {
                 Console.SetOut(writer);
                 UserInterface ui = new ConsoleUserInterface();
-                ui.displayNotice("NOTICENOTICE");
+                ui.displayNotices("NOTICENOTICE");
                 Assert.IsTrue(writer.ToString().Contains("NOTICENOTICE"));
             }
         }
