@@ -25,6 +25,7 @@ namespace UnitTestProject
             sampleUsers.Add(new User {Name = "Ed", Bal = 5.0, Pwd = "dE"});
             sampleUsers.Add(new User {Name = "Fara", Bal = 6.0, Pwd = "araF"});
             sampleUsers.Add(new User {Name = "Carl", Bal = 3.0, Pwd = "IAmAlsoCarl"});
+            sampleUsers.Add(new User { Name = "Beth", Bal = 2.0, Pwd = "hteB" });
 
             ui = new FakeUserInterface();
         }
@@ -157,6 +158,16 @@ namespace UnitTestProject
             ui.queueStringResponse("IAmAlsoCarl");
             user = loginManager.login();
             Assert.AreEqual(sampleUsers[6], user);
+        }
+
+        [Test]
+        public void testIfTwoUsersHaveTheSameNameAndPasswordTheFirstOneIsRetrieved()
+        {
+            LoginManager loginManager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse("Beth");
+            ui.queueStringResponse("hteB");
+            User user = loginManager.login();
+            Assert.AreEqual(sampleUsers[1], user);
         }
     }
 }
