@@ -56,11 +56,11 @@ namespace Refactoring
 
                 // Prompt for user input
                 string answer = ui.getStringInputFromUser("Enter a number:");
-                int num = Convert.ToInt32(answer);
-                num = num - 1; 
+                int selectedProductIndex = Convert.ToInt32(answer);
+                selectedProductIndex = selectedProductIndex - 1; 
 
                 // Check if user entered number that equals product count
-                if (num == 7)
+                if (selectedProductIndex == products.Count)
                 {
                     // Write out new balance
                     string json = JsonConvert.SerializeObject(users, Formatting.Indented);
@@ -70,45 +70,45 @@ namespace Refactoring
                     string json2 = JsonConvert.SerializeObject(products, Formatting.Indented);
                     File.WriteAllText(@"Data/Products.json", json2);
 
-
                     // Prevent console from closing
                     ui.promptUserToExit();
                     return;
                 }
                 else
                 {
+                    Product selectedProduct = products[selectedProductIndex];
                     Console.WriteLine();
-                    Console.WriteLine("You want to buy: " + products[num].Name);
+                    Console.WriteLine("You want to buy: " + selectedProduct.Name);
                     Console.WriteLine("Your balance is " + loggedInUser.Balance.ToString("C"));
 
                     // Prompt for user input
                     answer = ui.getStringInputFromUser("Enter amount to purchase:");
-                    int qty = Convert.ToInt32(answer);
+                    int quantityToPurchase = Convert.ToInt32(answer);
 
                     // Check if balance - quantity * price is less than 0
-                    if (loggedInUser.Balance - products[num].Price * qty < 0)
+                    if (loggedInUser.Balance - selectedProduct.Price * quantityToPurchase < 0)
                     {
                         writeMessages(ConsoleColor.Red, "You do not have enough money to buy that.");
                         continue;
                     }
 
                     // Check if quantity is less than quantity
-                    if (products[num].Qty <= qty)
+                    if (selectedProduct.Qty <= quantityToPurchase)
                     {
-                        writeMessages(ConsoleColor.Red, "Sorry, " + products[num].Name + " is out of stock");
+                        writeMessages(ConsoleColor.Red, "Sorry, " + selectedProduct.Name + " is out of stock");
                         continue;
                     }
 
                     // Check if quantity is greater than zero
-                    if (qty > 0)
+                    if (quantityToPurchase > 0)
                     {
                         // Balance = Balance - Price * Quantity
-                        loggedInUser.Balance = loggedInUser.Balance - products[num].Price * qty;
+                        loggedInUser.Balance = loggedInUser.Balance - selectedProduct.Price * quantityToPurchase;
 
                         // Quanity = Quantity - Quantity
-                        products[num].Qty = products[num].Qty - qty;
+                        selectedProduct.Qty = selectedProduct.Qty - quantityToPurchase;
 
-                        writeMessages(ConsoleColor.Green, "You bought " + qty + " " + products[num].Name, "Your new balance is " + loggedInUser.Balance.ToString("C"));
+                        writeMessages(ConsoleColor.Green, "You bought " + quantityToPurchase + " " + selectedProduct.Name, "Your new balance is " + loggedInUser.Balance.ToString("C"));
                     }
                     else
                     {
