@@ -10,12 +10,13 @@ namespace Refactoring
 {
     public class Tusc
     {
-        private static void writeMessage(ConsoleColor color, String message)
+        private static void writeMessages(ConsoleColor color, params string[] messages)
         {
             Console.Clear();
             Console.ForegroundColor = color;
             Console.WriteLine();
-            Console.WriteLine(message);
+            foreach (string message in messages)
+                Console.WriteLine(message);
             Console.ResetColor();
         }
 
@@ -74,7 +75,7 @@ namespace Refactoring
                         loggedIn = true;
 
                         // Show welcome message
-                        writeMessage(ConsoleColor.Green, "Login successful! Welcome " + name + "!");
+                        writeMessages(ConsoleColor.Green, "Login successful! Welcome " + name + "!");
                         
                         // Show remaining balance
                         double bal = 0;
@@ -155,14 +156,14 @@ namespace Refactoring
                                 // Check if balance - quantity * price is less than 0
                                 if (bal - prods[num].Price * qty < 0)
                                 {
-                                    writeMessage(ConsoleColor.Red, "You do not have enough money to buy that.");
+                                    writeMessages(ConsoleColor.Red, "You do not have enough money to buy that.");
                                     continue;
                                 }
 
                                 // Check if quantity is less than quantity
                                 if (prods[num].Qty <= qty)
                                 {
-                                    writeMessage(ConsoleColor.Red, "Sorry, " + prods[num].Name + " is out of stock");
+                                    writeMessages(ConsoleColor.Red, "Sorry, " + prods[num].Name + " is out of stock");
                                     continue;
                                 }
 
@@ -175,16 +176,12 @@ namespace Refactoring
                                     // Quanity = Quantity - Quantity
                                     prods[num].Qty = prods[num].Qty - qty;
 
-                                    Console.Clear();
-                                    Console.ForegroundColor = ConsoleColor.Green;
-                                    Console.WriteLine("You bought " + qty + " " + prods[num].Name);
-                                    Console.WriteLine("Your new balance is " + bal.ToString("C"));
-                                    Console.ResetColor();
+                                    writeMessages(ConsoleColor.Green, "You bought " + qty + " " + prods[num].Name, "Your new balance is " + bal.ToString("C"));
                                 }
                                 else
                                 {
                                     // Quantity is less than zero
-                                    writeMessage(ConsoleColor.Yellow, "Purchase cancelled");
+                                    writeMessages(ConsoleColor.Yellow, "Purchase cancelled");
                                 }
                             }
                         }
@@ -192,7 +189,7 @@ namespace Refactoring
                     else
                     {
                         // Invalid Password
-                        writeMessage(ConsoleColor.Red, "You entered an invalid password.");
+                        writeMessages(ConsoleColor.Red, "You entered an invalid password.");
 
                         goto Login;
                     }
@@ -200,7 +197,7 @@ namespace Refactoring
                 else
                 {
                     // Invalid User
-                    writeMessage(ConsoleColor.Red, "You entered an invalid user.");
+                    writeMessages(ConsoleColor.Red, "You entered an invalid user.");
 
                     goto Login;
                 }
