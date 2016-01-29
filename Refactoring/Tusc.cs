@@ -30,48 +30,48 @@ namespace Refactoring
             bool loggedIn = false; // Is logged in?
 
             // Prompt for user input
-            string name = ui.getStringInputFromUser("\r\nEnter Username:"); // TODO: Deal with the extra line we need to add here
+            string userName = ui.getStringInputFromUser("\r\nEnter Username:"); // TODO: Deal with the extra line we need to add here
 
             // Validate Username
-            bool valUsr = false; // Is valid user?
-            if (!string.IsNullOrEmpty(name))
+            bool isValidUserName = false; // Is valid user?
+            if (!string.IsNullOrEmpty(userName))
             {
                 for (int i = 0; i < 5; i++)
                 {
                     User user = users[i];
                     // Check that name matches
-                    if (user.Name == name)
+                    if (user.Name == userName)
                     {
-                        valUsr = true;
+                        isValidUserName = true;
                     }
                 }
 
                 // if valid user
-                if (valUsr)
+                if (isValidUserName)
                 {
                     // Prompt for user input
-                    string pwd = ui.getStringInputFromUser("Enter Password:");
+                    string password = ui.getStringInputFromUser("Enter Password:");
 
                     // Validate Password
-                    bool valPwd = false; // Is valid password?
+                    bool isValidPassword = false; // Is valid password?
                     for (int i = 0; i < 5; i++)
                     {
                         User user = users[i];
 
                         // Check that name and password match
-                        if (user.Name == name && user.Pwd == pwd)
+                        if (user.Name == userName && user.Pwd == password)
                         {
-                            valPwd = true;
+                            isValidPassword = true;
                         }
                     }
 
                     // if valid password
-                    if (valPwd == true)
+                    if (isValidPassword == true)
                     {
                         loggedIn = true;
 
                         // Show welcome message
-                        writeMessages(ConsoleColor.Green, "Login successful! Welcome " + name + "!");
+                        writeMessages(ConsoleColor.Green, "Login successful! Welcome " + userName + "!");
                         
                         // Show remaining balance
                         double bal = 0;
@@ -80,7 +80,7 @@ namespace Refactoring
                             User usr = users[i];
 
                             // Check that name and password match
-                            if (usr.Name == name && usr.Pwd == pwd)
+                            if (usr.Name == userName && usr.Pwd == password)
                             {
                                 bal = usr.Bal;
 
@@ -116,7 +116,7 @@ namespace Refactoring
                                 foreach (var usr in users)
                                 {
                                     // Check that name and password match
-                                    if (usr.Name == name && usr.Pwd == pwd)
+                                    if (usr.Name == userName && usr.Pwd == password)
                                     {
                                         usr.Bal = bal;
                                     }
