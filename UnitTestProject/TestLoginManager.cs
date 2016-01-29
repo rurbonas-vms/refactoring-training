@@ -44,8 +44,18 @@ namespace UnitTestProject
         public void testLoginAsksForAUserName()
         {
             LoginManager loginManager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse(null);
             loginManager.login();
             Assert.That(ui.getStringInputLabels(), Contains.Item("\r\nEnter Username:"));
+        }
+
+        [Test]
+        public void testIfUserProvidesNullUserNameReturnNull()
+        {
+            LoginManager loginmanager = new LoginManager(sampleUsers, ui);
+            ui.queueStringResponse(null);
+            User user = loginmanager.login();
+            Assert.Null(user);
         }
     }
 }

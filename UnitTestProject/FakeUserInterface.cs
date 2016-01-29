@@ -10,6 +10,7 @@ namespace UnitTestProject
     public class FakeUserInterface : UserInterface
     {
         private List<string> stringInputLabels = new List<string>();
+        private Queue<string> stringResponses = new Queue<string>();
 
         public void displayBanner(string bannerText)
         {
@@ -18,7 +19,7 @@ namespace UnitTestProject
         public string getStringInputFromUser(string labelText)
         {
             stringInputLabels.Add(labelText);
-            return null;
+            return stringResponses.Dequeue();
         }
 
         public void promptUserToExit()
@@ -28,6 +29,11 @@ namespace UnitTestProject
         public ICollection<string> getStringInputLabels()
         {
             return stringInputLabels;
+        }
+
+        public void queueStringResponse(string response)
+        {
+            stringResponses.Enqueue(response);
         }
     }
 }

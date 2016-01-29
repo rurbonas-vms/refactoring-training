@@ -21,11 +21,12 @@ namespace Refactoring
             this.ui = ui;
         }
 
-        public void login()
+        public User login()
         {
             // Prompt for user input
             string userName = ui.getStringInputFromUser("\r\nEnter Username:"); // TODO: Deal with the extra line we need to add here
 
+            return null;
         }
     }
 }
